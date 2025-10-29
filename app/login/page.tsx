@@ -18,7 +18,7 @@ export default function Login() {
     setCarregando(true);
 
     try {
-      const res = await fetch("./Api/login", {
+      const res = await fetch("./Api/loginbc", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

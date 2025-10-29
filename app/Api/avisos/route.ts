@@ -7,7 +7,7 @@ import path from "path";
 const dbConfig = {
   host: "localhost",
   user: "root",
-  password: "SUA_SENHA_DO_MYSQL",
+  password: "",
   database: "intranetdb",
 };
 

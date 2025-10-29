@@ -4,8 +4,8 @@ FROM node:20 AS builder
 # Define o diretório de trabalho
 WORKDIR /app
 
-# Copia apenas os arquivos de dependência primeiro (para aproveitar cache do Docker)
-COPY package.json package-lock.json* ./
+# Copia apenas arquivos de dependências (melhor aproveitamento de cache)
+COPY package*.json ./
 
 # Instala as dependências
 RUN npm install
@@ -17,18 +17,22 @@ COPY . .
 RUN npm run build
 
 # Etapa 2: rodar a aplicação
-FROM node:20-alpine
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
-# Copia apenas o que é necessário da etapa anterior
-COPY --from=builder /app ./
-
+# Define variáveis de ambiente
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Expõe a porta 3000 para o container
+# Copia apenas os arquivos necessários do builder
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
+
+# Expõe a porta 3000
 EXPOSE 3000
 
-# Comando padrão de inicialização
+# Comando para iniciar a aplicação
 CMD ["npm", "start"]

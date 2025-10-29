@@ -400,13 +400,90 @@ export default function Page() {
             </div>
           )}
         </motion.div>
+
+        {/* Ramais */}
+        <motion.div
+          className="bg-white rounded-lg p-4 shadow"
+          variants={fadeUp}
+          custom={6}
+        >
+          <h4 className="font-semibold text-green-800 mb-3">
+            Lista Email
+          </h4>
+          {Ramais.length > 0 ? (
+            <ul className="space-y-2">
+              {Ramais.map((a) => (
+                <motion.li
+                  key={a.id}
+                  className="flex items-center gap-3 p-2 hover:bg-green-50 rounded-md"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Image
+                    src={a.foto}
+                    alt={a.nome}
+                    width={40}
+                    height={40}
+                    className="rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="font-medium">{a.nome}</div>
+                    <div className="text-xs text-slate-500">{a.cargo}</div>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
+          ) : (
+            <div className="text-sm text-slate-500">
+              Nenhum ramal cadastrado
+            </div>
+          )}
+        </motion.div>
+
+
+                {/* Ramais */}
+        <motion.div
+          className="bg-white rounded-lg p-4 shadow"
+          variants={fadeUp}
+          custom={6}
+        >
+          <h4 className="font-semibold text-green-800 mb-3">
+            Lista de Contatos
+          </h4>
+          {Ramais.length > 0 ? (
+            <ul className="space-y-2">
+              {Ramais.map((a) => (
+                <motion.li
+                  key={a.id}
+                  className="flex items-center gap-3 p-2 hover:bg-green-50 rounded-md"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Image
+                    src={a.foto}
+                    alt={a.nome}
+                    width={40}
+                    height={40}
+                    className="rounded-full object-cover"
+                  />
+                  <div>
+                    <div className="font-medium">{a.nome}</div>
+                    <div className="text-xs text-slate-500">{a.cargo}</div>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
+          ) : (
+            <div className="text-sm text-slate-500">
+              Nenhum ramal cadastrado
+            </div>
+          )}
+        </motion.div>
         {/* Criadores */}
         <motion.div
           className="bg-white rounded-lg p-4 shadow"
           variants={fadeUp}
           custom={5}
         >
-          <h4 className="font-semibold text-green-800 mb-3">👨‍💻 Colaboradores</h4>
+          <h4 className="font-semibold text-green-800 mb-3">Colaboradores</h4>
           <ul className="space-y-2">
             {colaboradores.map((c) => (
               <motion.li
